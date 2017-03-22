@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Elena Kompanets](https://up.htmlacademy.ru/javascript/9/user/22645).
-* Наставник: `Неизвестно`.
+* Наставник: ` Евгений Лепёшкин `.
 
 ---
 
