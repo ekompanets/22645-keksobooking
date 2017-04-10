@@ -80,21 +80,21 @@ var createAd = function () {
   var y = getRandomInt(minYLocation, maxYLocation);
   var newAd = {
     'author': {
-      'avatar': 'img/avatars/user0' +getRandomNumber() + '.png'
+      'avatar': 'img/avatars/user0' + getRandomNumber() + '.png'
     },
 
     'offer': {
-      'title': getRandomTitle(), //строка, заголовок предложения, одно из фиксированных значений . Значения не должны повторяться.
-      'address': x + ', ' + y, //строка, адрес предложения, представляет собой запись вида '{{location.x}}, {{location.y}}'
-      'price': getRandomInt(minPrice, maxPrice), //число, случайная цена от 1000 до 1 000 000
-      'type': getRandomValueFromArray(LODGE_TYPES), //строка с одним из трех фиксированных значений: flat, house или bungalo
-      'rooms': getRandomInt(minNumRooms, maxNumRooms), //число, случайное количество комнат от 1 до 5
-      'guests': getRandomInt(minNumGuests, maxNumGuests), //число, случайное количество гостей, которое можно разместить
-      'checkin': getRandomValueFromArray(CHECKINS), //строка с одним из трех фиксированных значений: ,
-      'checkout': getRandomValueFromArray(CHECKOUTS), //строка с одним из трех фиксированных значений: ,
-      'features': getRandomArrayFromArray(FEATURES, getRandomInt(1, FEATURES.length)), //массив строк случайной длины из ниже предложенных: ,
-      'description': '', 
-      'photos': [] 
+      'title': getRandomTitle(),
+      'address': x + ', ' + y,
+      'price': getRandomInt(minPrice, maxPrice),
+      'type': getRandomValueFromArray(LODGE_TYPES),
+      'rooms': getRandomInt(minNumRooms, maxNumRooms),
+      'guests': getRandomInt(minNumGuests, maxNumGuests),
+      'checkin': getRandomValueFromArray(CHECKINS),
+      'checkout': getRandomValueFromArray(CHECKOUTS),
+      'features': getRandomArrayFromArray(FEATURES, getRandomInt(1, FEATURES.length)),
+      'description': '',
+      'photos': []
     },
 
     'location': {
