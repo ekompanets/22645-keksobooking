@@ -13,11 +13,16 @@ var LODGE_TYPES = ['flat', 'house', 'bungalo']
 var CHECKINS = ['12:00', '13:00', '14:00'];
 var CHECKOUTS = ['12:00', '13:00', '14:00'];
 var NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8];
-
+var TYPES_TRANSLATE = {
+  'flat': 'Квартира',
+  'bungalo': 'Бунгало',
+  'house': 'Дом'
+}
 // массив объявлений
 var ads = [];
 // количество объявлений
 var numAds = 8;
+// константы для формирования объявлений
 var minNumRooms = 1;
 var maxNumRooms = 5;
 var minPrice = 1000;
@@ -26,6 +31,11 @@ var minXLocation = 300;
 var maxXLocation = 900;
 var minYLocation = 100;
 var maxYLocation = 500;
+// константы для формирования пинов
+var PIN_CLASS = 'pin';
+var IMG_CLASS = 'rounded';
+var IMG_WIDTH = 40;
+var IMG_HEIGHT = 40;
 
 // получение случайного индекса из массива
 var getRandomInt = function (min, max) {
@@ -45,12 +55,10 @@ var getRandomArrayFromArray = function (array, length) {
 }
 
 // получение списка features в заданном формате
-var getFeaturesList = function (array) {
-  var featuresList = '';
-  for (var i = 0; i < array.length; i++) {
-    featuresList += '<span class="feature__image feature__image--' + array[i] + '"></span>'
-  }
-  return featuresList;
+var getFeature = function (item) {
+  var feature = document.createElement('span');
+  feature.class ='feature__image feature__image--' + item;
+  return feature;
 }
 // создание аватара
 var getUniqValue = function (array) {
@@ -101,29 +109,36 @@ var renderLodge = function (ad) {
   lodgeElement.querySelector('.lodge__title').textContent = ad.offer.title;
   lodgeElement.querySelector('.lodge__address').textContent = ad.offer.address;
   lodgeElement.querySelector('.lodge__price').innerHTML = ad.offer.price + '&#x20bd;/ночь';
-  lodgeElement.querySelector('.lodge__type').textContent = ad.offer.type;
+  lodgeElement.querySelector('.lodge__type').textContent = TYPES_TRANSLATE[ad.offer.type];
   lodgeElement.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + ad.offer.guests + ' гостей в ' + ad.offer.rooms + ' комнатах';
   lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + ad.offer.checkin + ', выезд до ' + ad.offer.checkout;
-  lodgeElement.querySelector('.lodge__features').innerHTML = getFeaturesList(ad.offer.features);
-
-  lodgeElement.querySelector('.lodge__description').textContent = ad.offer.title;
+  for (i = 0; i < ad.offer.features.length; i++) {
+    lodgeElement.querySelector('.lodge__features').appendChild(getFeature(ad.offer.features[i]));
+  }
+  lodgeElement.querySelector('.lodge__description').textContent = ad.offer.description;
 
   return lodgeElement;
 }
 
+
+
 // формирование пинов на карте
 var renderPin = function (ad) {
   var pinElement = document.createElement('div');
-  pinElement.className = 'pin';
+  var imgElement = document.createElement('img');
+  pinElement.className = PIN_CLASS;
   pinElement.setAttribute('style', 'left: ' + ad.location.x +'px; top: ' + ad.location.y +'px');
-  pinElement.innerHTML = '<img src="' + ad.author.avatar +'" class="rounded" width="40" height="40">'; 
+  imgElement.className = IMG_CLASS;
+  imgElement.width = IMG_WIDTH;
+  imgElement.height = IMG_HEIGHT;
+  imgElement.src = ad.author.avatar;
+  pinElement.appendChild(imgElement);
 return pinElement;
 }
 // создаем объявления
 for (var i = 0; i < numAds; i++) {
     ads[i] = createAd(ads, i);
 }
-
 var fragment = document.createDocumentFragment();
 // формируем пины
 for (i = 0; i < ads.length; i++) {
@@ -131,7 +146,7 @@ for (i = 0; i < ads.length; i++) {
 }
 
 pinMap.appendChild(fragment);
-корректируем положение пинов, чтобы стрелочка показывала место
+// корректируем положение пинов, чтобы стрелочка показывала место
 for (i = 1; i < pinMap.children.length; i++) {
   pinMap.children[i].style.left = parseInt(pinMap.children[i].style.left) - pinMap.children[i].offsetWidth / 2 + 'px'
   pinMap.children[i].style.top = parseInt(pinMap.children[i].style.top) - pinMap.children[i].offsetHeight + 'px'
