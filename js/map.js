@@ -41,7 +41,7 @@ var IMG_HEIGHT = 40;
 
 // получение случайного индекса из массива
 var getRandomInt = function (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max + 1 - min)) + min;
 };
 // пполучение случайного значения из массива
 var getRandomValueFromArray = function (array) {
