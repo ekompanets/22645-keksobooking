@@ -31,6 +31,8 @@ var minXLocation = 300;
 var maxXLocation = 900;
 var minYLocation = 100;
 var maxYLocation = 500;
+var minNumGuests = 1;
+var maxNumGuests = 100;
 // константы для формирования пинов
 var PIN_CLASS = 'pin';
 var IMG_CLASS = 'rounded';
@@ -142,12 +144,11 @@ var fragment = document.createDocumentFragment();
 for (i = 0; i < ads.length; i++) {
   fragment.appendChild(renderPin(ads[i]));
 }
-
 pinMap.appendChild(fragment);
 // корректируем положение пинов, чтобы стрелочка показывала место
 for (i = 1; i < pinMap.children.length; i++) {
-  pinMap.children[i].style.left = parseInt(pinMap.children[i].style.left. 10) - pinMap.children[i].offsetWidth / 2 + 'px';
-  pinMap.children[i].style.top = parseInt(pinMap.children[i].style.top. 10) - pinMap.children[i].offsetHeight + 'px';
+  pinMap.children[i].style.left = parseInt(pinMap.children[i].style.left, 10) - pinMap.children[i].offsetWidth / 2 + 'px';
+  pinMap.children[i].style.top = parseInt(pinMap.children[i].style.top, 10) - pinMap.children[i].offsetHeight + 'px';
 
 }
 fragment.innerHTML = '';
