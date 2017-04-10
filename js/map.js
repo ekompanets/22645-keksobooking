@@ -14,9 +14,9 @@ var CHECKINS = ['12:00', '13:00', '14:00'];
 var CHECKOUTS = ['12:00', '13:00', '14:00'];
 var NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8];
 
-// массив магов
+// массив объявлений
 var ads = [];
-// количество магов
+// количество объявлений
 var numAds = 8;
 var minNumRooms = 1;
 var maxNumRooms = 5;
@@ -94,7 +94,7 @@ var createAd = function () {
 }
   return newAd;
 }
-// 
+// формирование объявления в верстке
 var renderLodge = function (ad) {
   var lodgeElement = lodgeTemplate.cloneNode(true);
 
@@ -105,65 +105,39 @@ var renderLodge = function (ad) {
   lodgeElement.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + ad.offer.guests + ' гостей в ' + ad.offer.rooms + ' комнатах';
   lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + ad.offer.checkin + ', выезд до ' + ad.offer.checkout;
   lodgeElement.querySelector('.lodge__features').innerHTML = getFeaturesList(ad.offer.features);
-  // lodgeElement.querySelector('.lodge__features').innerHTML = ad.offer.features;
 
   lodgeElement.querySelector('.lodge__description').textContent = ad.offer.title;
-  // lodgeElement.querySelector('.lodge__dialog__title').textContent = ad.author.avatar;
-
 
   return lodgeElement;
 }
 
-// pins
+// формирование пинов на карте
 var renderPin = function (ad) {
   var pinElement = document.createElement('div');
   pinElement.className = 'pin';
   pinElement.setAttribute('style', 'left: ' + ad.location.x +'px; top: ' + ad.location.y +'px');
   pinElement.innerHTML = '<img src="' + ad.author.avatar +'" class="rounded" width="40" height="40">'; 
-  // console.log(pinElement.innerHTML)
 return pinElement;
 }
-// создаем магов
+// создаем объявления
 for (var i = 0; i < numAds; i++) {
-  // создаем мага с проверкой на совпадение имен
-  // var sameName = true;
-  // while (sameName)   {
-    // sameName = false;
     ads[i] = createAd(ads, i);
-    // for (var j = 0; j < i; j++) {
-    //   if (wizards[i].fullName === wizards[j].fullName) {
-    //     sameName = true;
-    //   }
-    // }
-  // }  
 }
 
 var fragment = document.createDocumentFragment();
-// рисуем магов
+// формируем пины
 for (i = 0; i < ads.length; i++) {
-  
   fragment.appendChild(renderPin(ads[i]));
 }
 
 pinMap.appendChild(fragment);
-
+корректируем положение пинов, чтобы стрелочка показывала место
 for (i = 1; i < pinMap.children.length; i++) {
-  console.log(pinMap.children[i].innerHTML)
-  console.log(parseInt(pinMap.children[i].style.left)+' - '+parseInt(pinMap.children[i].style.top))
-
   pinMap.children[i].style.left = parseInt(pinMap.children[i].style.left) - pinMap.children[i].offsetWidth / 2 + 'px'
   pinMap.children[i].style.top = parseInt(pinMap.children[i].style.top) - pinMap.children[i].offsetHeight + 'px'
-  console.log(parseInt(pinMap.children[i].style.left)+' - '+parseInt(pinMap.children[i].style.top))
-  
 }
-
 fragment.innerHTML = '';
-
-// for (var i = 0; i < numAds; i++) {
-  fragment.appendChild(renderLodge(ads[0]));
-// }
+fragment.appendChild(renderLodge(ads[0]));
 dialogPanel.innerHTML = '';
 dialogTitleImg.setAttribute('src', ads[0].author.avatar);
 dialogPanel.appendChild(fragment);
-// отображаем блок с магами
-// document.querySelector('.setup-similar').classList.remove('hidden');
