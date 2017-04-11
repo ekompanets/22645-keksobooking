@@ -26,9 +26,6 @@ var numAds = 8;
 var minNumRooms = 1;
 var maxNumRooms = 5;
 var minPrice = 1000;
-
-
-
 var maxPrice = 1000000;
 var minXLocation = 300;
 var maxXLocation = 900;
@@ -138,8 +135,6 @@ var renderPin = function (ad) {
   imgElement.height = IMG_HEIGHT;
   imgElement.src = ad.author.avatar;
   pinElement.appendChild(imgElement);
-  console.log(ad.location.x+' ,'+ad.location.y)
-  console.log(pinElement.style.left+' ,'+pinElement.style.top)
   return pinElement;
 };
 // создаем объявления
