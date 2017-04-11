@@ -31,7 +31,7 @@ var isEscKeyCode = function (evt) {
 };
 // переключатель класса у элемента
 var toggleClass = function (element, className, state) {
-  state ? element.classList.add(className) : element.classList.remove(className);
+  (state) ? element.classList.add(className) : element.classList.remove(className);
 };
 // массив объявлений
 var ads = [];
@@ -157,7 +157,6 @@ var setPinActive = function (pin, ad) {
 };
 // отображение объявления
 var renderDialog = function (ad) {
-  var dialogPanel = document.querySelector('.dialog__panel');
   dialog.replaceChild(renderLodge(ad), dialogPanel);
   document.querySelector('.dialog__title img').src = ad.author.avatar;
 };
@@ -168,7 +167,7 @@ var renderPin = function (ad) {
   pinElement.className = PIN_CLASS;
   pinElement.style.left = (ad.location.x - PIN_WIDTH / 2) + 'px';
   pinElement.style.top = (ad.location.y - PIN_HEIGHT) + 'px';
-  pinElement.tabIndex = "0";
+  pinElement.tabIndex = '0';
   imgElement.className = IMG_CLASS;
   imgElement.width = IMG_WIDTH;
   imgElement.height = IMG_HEIGHT;
