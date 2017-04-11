@@ -166,7 +166,6 @@ var renderPin = function (ad) {
   var pinElement = document.createElement('div');
   var imgElement = document.createElement('img');
   pinElement.className = PIN_CLASS;
-  if 
   pinElement.style.left = (ad.location.x - PIN_WIDTH / 2) + 'px';
   pinElement.style.top = (ad.location.y - PIN_HEIGHT) + 'px';
   pinElement.tabIndex = "0";
