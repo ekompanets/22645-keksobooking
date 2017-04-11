@@ -2,7 +2,7 @@
 'use strict';
 
 var dialog = document.querySelector('.dialog');
-var dialogPanel = document.querySelector('.dialog__panel');
+var dialogPanel = dialog.querySelector('.dialog__panel');
 var dialogTitleImg = document.querySelector('.dialog__title img');
 var pinMap = document.querySelector('.tokyo__pin-map');
 
@@ -163,8 +163,8 @@ var setPinActive = function (pin, ad) {
 };
 // отображение объявления
 var renderDialog = function (ad) {
-  var dialogPanel = document.querySelector('.dialog__panel');
-  dialog.replaceChild(renderLodge(ad), dialogPanel);
+  var dialogBlock = document.querySelector('.dialog__panel');
+  dialog.replaceChild(renderLodge(ad), dialogBlock);
   document.querySelector('.dialog__title img').src = ad.author.avatar;
 };
 // формирование пинов на карте
