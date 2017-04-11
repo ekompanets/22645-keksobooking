@@ -26,6 +26,9 @@ var numAds = 8;
 var minNumRooms = 1;
 var maxNumRooms = 5;
 var minPrice = 1000;
+
+
+
 var maxPrice = 1000000;
 var minXLocation = 300;
 var maxXLocation = 900;
@@ -38,6 +41,8 @@ var PIN_CLASS = 'pin';
 var IMG_CLASS = 'rounded';
 var IMG_WIDTH = 40;
 var IMG_HEIGHT = 40;
+var PIN_WIDTH = 56;
+var PIN_HEIGHT = 75;
 
 // получение случайного индекса из массива
 var getRandomInt = function (min, max) {
@@ -126,13 +131,15 @@ var renderPin = function (ad) {
   var pinElement = document.createElement('div');
   var imgElement = document.createElement('img');
   pinElement.className = PIN_CLASS;
-  pinElement.style.left = ad.location.x + 'px';
-  pinElement.style.top = ad.location.y + 'px';
+  pinElement.style.left = (ad.location.x - PIN_WIDTH / 2) + 'px';
+  pinElement.style.top = (ad.location.y - PIN_HEIGHT) + 'px';
   imgElement.className = IMG_CLASS;
   imgElement.width = IMG_WIDTH;
   imgElement.height = IMG_HEIGHT;
   imgElement.src = ad.author.avatar;
   pinElement.appendChild(imgElement);
+  console.log(ad.location.x+' ,'+ad.location.y)
+  console.log(pinElement.style.left+' ,'+pinElement.style.top)
   return pinElement;
 };
 // создаем объявления
@@ -145,12 +152,6 @@ for (i = 0; i < ads.length; i++) {
   fragment.appendChild(renderPin(ads[i]));
 }
 pinMap.appendChild(fragment);
-// корректируем положение пинов, чтобы стрелочка показывала место
-for (i = 1; i < pinMap.children.length; i++) {
-  pinMap.children[i].style.left = parseInt(pinMap.children[i].style.left, 10) - pinMap.children[i].offsetWidth / 2 + 'px';
-  pinMap.children[i].style.top = parseInt(pinMap.children[i].style.top, 10) - pinMap.children[i].offsetHeight + 'px';
-
-}
 fragment.innerHTML = '';
 fragment.appendChild(renderLodge(ads[0]));
 dialogPanel.innerHTML = '';
