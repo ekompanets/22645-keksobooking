@@ -1,6 +1,7 @@
 // map.js
 'use strict';
 
+var dialog = document.querySelector('.dialog');
 var dialogPanel = document.querySelector('.dialog__panel');
 var dialogTitleImg = document.querySelector('.dialog__title img');
 var pinMap = document.querySelector('.tokyo__pin-map');
@@ -27,7 +28,9 @@ var isEnterKeyCode = function (evt) {
 };
 
 var isEscKeyCode = function (evt) {
-  return evt.keyCode === ESC_KEY_CODE;
+  if (evt.keyCode === ESC_KEY_CODE) {
+    closeDialogPanel();
+  }
 };
 // переключатель класса у элемента
 var toggleClass = function (element, className, state) {
@@ -151,7 +154,6 @@ var removePinActiveClass = function () {
   }
 };
 
-var dialog = document.querySelector('.dialog');
 // активация пина
 var setPinActive = function (pin, ad) {
   removePinActiveClass();
@@ -161,6 +163,7 @@ var setPinActive = function (pin, ad) {
 };
 // отображение объявления
 var renderDialog = function (ad) {
+  var dialogPanel = document.querySelector('.dialog__panel');
   dialog.replaceChild(renderLodge(ad), dialogPanel);
   document.querySelector('.dialog__title img').src = ad.author.avatar;
 };
