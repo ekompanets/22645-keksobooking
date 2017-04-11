@@ -31,7 +31,11 @@ var isEscKeyCode = function (evt) {
 };
 // переключатель класса у элемента
 var toggleClass = function (element, className, state) {
-  (state) ? element.classList.add(className) : element.classList.remove(className);
+  if (state) {
+    element.classList.add(className)
+  } else {
+    element.classList.remove(className);
+  }
 };
 // массив объявлений
 var ads = [];
