@@ -18,6 +18,21 @@ var TYPES_TRANSLATE = {
   'bungalo': 'Бунгало',
   'house': 'Дом'
 };
+// проверка на нажатие ENTER
+var ENTER_KEY_CODE = 13;
+var ESC_KEY_CODE = 27;
+
+var isEnterKeyCode = function (evt) {
+  return evt.keyCode === ENTER_KEY_CODE;
+};
+
+var isEscKeyCode = function (evt) {
+  return evt.keyCode === ESC_KEY_CODE;
+};
+// переключатель класса у элемента
+var toggleClass = function (element, className, state) {
+  state ? element.classList.add(className) : element.classList.remove(className);
+};
 // массив объявлений
 var ads = [];
 // количество объявлений
@@ -35,11 +50,13 @@ var minNumGuests = 1;
 var maxNumGuests = 100;
 // константы для формирования пинов
 var PIN_CLASS = 'pin';
+var PIN_ACTIVE_CLASS = 'pin--active';
 var IMG_CLASS = 'rounded';
 var IMG_WIDTH = 40;
 var IMG_HEIGHT = 40;
 var PIN_WIDTH = 56;
 var PIN_HEIGHT = 75;
+var START_PIN_NUM = 0;
 
 // получение случайного индекса из массива
 var getRandomInt = function (min, max) {
@@ -123,18 +140,52 @@ var renderLodge = function (ad) {
 
   return lodgeElement;
 };
+// деактивация пина
+var removePinActiveClass = function () {
+  if (pinMap.querySelector('.' + PIN_ACTIVE_CLASS)) {
+    pinMap.querySelector('.' + PIN_ACTIVE_CLASS).classList.remove(PIN_ACTIVE_CLASS);
+  }
+};
+
+var dialog = document.querySelector('.dialog');
+// активация пина
+var setPinActive = function (pin, ad) {
+  removePinActiveClass();
+  pin.classList.add(PIN_ACTIVE_CLASS);
+  openDialogPanel();
+  renderDialog(ad);
+};
+// отображение объявления
+var renderDialog = function (ad) {
+  var dialogPanel = document.querySelector('.dialog__panel');
+  dialog.replaceChild(renderLodge(ad), dialogPanel);
+  document.querySelector('.dialog__title img').src = ad.author.avatar;
+};
 // формирование пинов на карте
 var renderPin = function (ad) {
   var pinElement = document.createElement('div');
   var imgElement = document.createElement('img');
   pinElement.className = PIN_CLASS;
+  if 
   pinElement.style.left = (ad.location.x - PIN_WIDTH / 2) + 'px';
   pinElement.style.top = (ad.location.y - PIN_HEIGHT) + 'px';
+  pinElement.tabIndex = "0";
   imgElement.className = IMG_CLASS;
   imgElement.width = IMG_WIDTH;
   imgElement.height = IMG_HEIGHT;
   imgElement.src = ad.author.avatar;
   pinElement.appendChild(imgElement);
+
+  pinElement.addEventListener('click', function (evt) {
+    setPinActive(pinElement, ad);
+  });
+
+  pinElement.addEventListener('keydown', function (evt) {
+    if (isEnterKeyCode(evt)) {
+      setPinActive(pinElement, ad);
+    }
+  });
+
   return pinElement;
 };
 // создаем объявления
@@ -148,7 +199,31 @@ for (i = 0; i < ads.length; i++) {
 }
 pinMap.appendChild(fragment);
 fragment.innerHTML = '';
-fragment.appendChild(renderLodge(ads[0]));
-dialogPanel.innerHTML = '';
-dialogTitleImg.setAttribute('src', ads[0].author.avatar);
-dialogPanel.appendChild(fragment);
+fragment.appendChild(renderLodge(ads[START_PIN_NUM]));
+dialog.replaceChild(fragment, dialogPanel);
+dialogTitleImg.setAttribute('src', ads[START_PIN_NUM].author.avatar);
+// закрыть объявление
+var closeDialogPanel = function () {
+  toggleClass(dialog, 'hidden', true);
+  removePinActiveClass();
+
+  document.removeEventListener('keydown', isEscKeyCode);
+};
+// открыть объявление
+var openDialogPanel = function () {
+  toggleClass(dialog, 'hidden', false);
+
+  document.addEventListener('keydown', isEscKeyCode);
+};
+
+var dialogClose = document.querySelector('.dialog__close');
+// закрыть объявление по клику
+dialogClose.addEventListener('click', function (evt) {
+  closeDialogPanel();
+});
+// закрыть объявление по Enter
+dialogClose.addEventListener('keydown', function (evt) {
+  if (isEnterKeyCode(evt)) {
+    closeDialogPanel();
+  }
+});
