@@ -505,6 +505,10 @@ select option:hover {
     height: 510px;
 }
 
+.hidden {
+    display: none;
+}
+
 .dialog__title {
     position: relative;
 }
@@ -514,6 +518,10 @@ select option:hover {
 
     right: 0;
     bottom: 0;
+}
+
+.dialog__close img:focus {
+    outline: 1px dotted;
 }
 
 .dialog__panel {
@@ -631,6 +639,10 @@ select option:hover {
 
 .pin--active {
     background-image: url("../img/pin-active.png");
+}
+
+.pin:focus {
+    outline: 1px dotted #ff5722;
 }
 
 .pin img {
