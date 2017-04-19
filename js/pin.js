@@ -65,6 +65,6 @@ window.pin = (function () {
     renderPin: renderPin,
     removePinActiveClass: removePinActiveClass,
     setPinActive: setPinActive,
-    displayPins:  displayPins
+    displayPins: displayPins
   };
 })();
