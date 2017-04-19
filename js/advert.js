@@ -5,13 +5,13 @@ window.advert = (function () {
 
   
 
-  var getRandomNumber = window.utils.getUniqValue(adData.NUMBERS);
-  var getRandomTitle = window.utils.getUniqValue(adData.TITLES);
+  var getRandomNumber = window.utils.getUniqValue(window.adData.NUMBERS);
+  var getRandomTitle = window.utils.getUniqValue(window.adData.TITLES);
 
   // создание объявления
   var createAd = function () {
-    var x = window.utils.getRandomInt(adData.MIN_X_LOCATION, adData.MAX_X_LOCATION);
-    var y = window.utils.getRandomInt(adData.MIN_Y_LOCATION, adData.MAX_Y_LOCATION);
+    var x = window.utils.getRandomInt(window.adData.MIN_X_LOCATION, window.adData.MAX_X_LOCATION);
+    var y = window.utils.getRandomInt(window.adData.MIN_Y_LOCATION, window.adData.MAX_Y_LOCATION);
     var newAd = {
       'author': {
         'avatar': 'img/avatars/user0' + getRandomNumber() + '.png'
@@ -20,13 +20,13 @@ window.advert = (function () {
       'offer': {
         'title': getRandomTitle(),
         'address': x + ', ' + y,
-        'price': window.utils.getRandomInt(adData.MIN_PRICE, adData.MAX_PRICE),
-        'type': window.utils.getRandomValueFromArray(adData.LODGE_TYPES),
-        'rooms': window.utils.getRandomInt(adData.MIN_NUM_ROOMS, adData.MAX_NUM_ROOMS),
-        'guests': window.utils.getRandomInt(adData.MIN_NUM_GUESTS, adData.MAX_NUM_GUESTS),
-        'checkin': window.utils.getRandomValueFromArray(adData.CHECKINS),
-        'checkout': window.utils.getRandomValueFromArray(adData.CHECKOUTS),
-        'features': window.utils.getRandomArrayFromArray(adData.FEATURES, window.utils.getRandomInt(1, adData.FEATURES.length)),
+        'price': window.utils.getRandomInt(window.adData.MIN_PRICE, window.adData.MAX_PRICE),
+        'type': window.utils.getRandomValueFromArray(window.adData.LODGE_TYPES),
+        'rooms': window.utils.getRandomInt(window.adData.MIN_NUM_ROOMS, window.adData.MAX_NUM_ROOMS),
+        'guests': window.utils.getRandomInt(window.adData.MIN_NUM_GUESTS, window.adData.MAX_NUM_GUESTS),
+        'checkin': window.utils.getRandomValueFromArray(window.adData.CHECKINS),
+        'checkout': window.utils.getRandomValueFromArray(window.adData.CHECKOUTS),
+        'features': window.utils.getRandomArrayFromArray(window.adData.FEATURES, window.utils.getRandomInt(1, window.adData.FEATURES.length)),
         'description': '',
         'photos': []
       },
@@ -44,7 +44,7 @@ window.advert = (function () {
     var ads = [];
 
     // создаем объявления
-    for (var i = 0; i < adData.NUM_ADS; i++) {
+    for (var i = 0; i < window.adData.NUM_ADS; i++) {
       ads[i] = createAd();
     }
     return ads

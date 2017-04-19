@@ -9,17 +9,17 @@ window.pin = (function () {
   var renderPin = function (ad, numAd) {
     var pinElement = document.createElement('div');
     var imgElement = document.createElement('img');
-    pinElement.className = adData.PIN_CLASS;
-    pinElement.style.left = (ad.location.x - adData.PIN_WIDTH / 2) + 'px';
-    pinElement.style.top = (ad.location.y - adData.PIN_HEIGHT) + 'px';
+    pinElement.className = window.adData.PIN_CLASS;
+    pinElement.style.left = (ad.location.x - window.adData.PIN_WIDTH / 2) + 'px';
+    pinElement.style.top = (ad.location.y - window.adData.PIN_HEIGHT) + 'px';
     pinElement.tabIndex = '0';
-    imgElement.className = adData.IMG_CLASS;
-    imgElement.width = adData.IMG_WIDTH;
-    imgElement.height = adData.IMG_HEIGHT;
+    imgElement.className = window.adData.IMG_CLASS;
+    imgElement.width = window.adData.IMG_WIDTH;
+    imgElement.height = window.adData.IMG_HEIGHT;
     imgElement.src = ad.author.avatar;
     pinElement.appendChild(imgElement);
 
-    if (numAd === adData.START_PIN_NUM) {
+    if (numAd === window.adData.START_PIN_NUM) {
       setPinActive(pinElement, ad);
     }
 
@@ -38,17 +38,17 @@ window.pin = (function () {
 
   // деактивация пина
   var removePinActiveClass = function () {
-    if (pinMap.querySelector('.' + adData.PIN_ACTIVE_CLASS)) {
-      pinMap.querySelector('.' + adData.PIN_ACTIVE_CLASS).classList.remove(adData.PIN_ACTIVE_CLASS);
+    if (pinMap.querySelector('.' + window.adData.PIN_ACTIVE_CLASS)) {
+      pinMap.querySelector('.' + window.adData.PIN_ACTIVE_CLASS).classList.remove(window.adData.PIN_ACTIVE_CLASS);
     }
   };
 
   // активация пина
   var setPinActive = function (pin, ad) {
     removePinActiveClass();
-    pin.classList.add(adData.PIN_ACTIVE_CLASS);
-    card.openCard();
-    card.displayCard(ad);
+    pin.classList.add(window.adData.PIN_ACTIVE_CLASS);
+    window.card.openCard();
+    window.card.displayCard(ad);
   };
 
   var displayPins = function (ads) {
