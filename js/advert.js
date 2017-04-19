@@ -5,13 +5,13 @@ window.advert = (function () {
 
   
 
-  var getRandomNumber = utils.getUniqValue(adData.NUMBERS);
-  var getRandomTitle = utils.getUniqValue(adData.TITLES);
+  var getRandomNumber = window.utils.getUniqValue(adData.NUMBERS);
+  var getRandomTitle = window.utils.getUniqValue(adData.TITLES);
 
   // создание объявления
   var createAd = function () {
-    var x = utils.getRandomInt(adData.minXLocation, adData.maxXLocation);
-    var y = utils.getRandomInt(adData.minYLocation, adData.maxYLocation);
+    var x = window.utils.getRandomInt(adData.MIN_X_LOCATION, adData.MAX_X_LOCATION);
+    var y = window.utils.getRandomInt(adData.MIN_Y_LOCATION, adData.MAX_Y_LOCATION);
     var newAd = {
       'author': {
         'avatar': 'img/avatars/user0' + getRandomNumber() + '.png'
@@ -20,13 +20,13 @@ window.advert = (function () {
       'offer': {
         'title': getRandomTitle(),
         'address': x + ', ' + y,
-        'price': utils.getRandomInt(adData.minPrice, adData.maxPrice),
-        'type': utils.getRandomValueFromArray(adData.LODGE_TYPES),
-        'rooms': utils.getRandomInt(adData.minNumRooms, adData.maxNumRooms),
-        'guests': utils.getRandomInt(adData.minNumGuests, adData.maxNumGuests),
-        'checkin': utils.getRandomValueFromArray(adData.CHECKINS),
-        'checkout': utils.getRandomValueFromArray(adData.CHECKOUTS),
-        'features': utils.getRandomArrayFromArray(adData.FEATURES, utils.getRandomInt(1, adData.FEATURES.length)),
+        'price': window.utils.getRandomInt(adData.MIN_PRICE, adData.MAX_PRICE),
+        'type': window.utils.getRandomValueFromArray(adData.LODGE_TYPES),
+        'rooms': window.utils.getRandomInt(adData.MIN_NUM_ROOMS, adData.MAX_NUM_ROOMS),
+        'guests': window.utils.getRandomInt(adData.MIN_NUM_GUESTS, adData.MAX_NUM_GUESTS),
+        'checkin': window.utils.getRandomValueFromArray(adData.CHECKINS),
+        'checkout': window.utils.getRandomValueFromArray(adData.CHECKOUTS),
+        'features': window.utils.getRandomArrayFromArray(adData.FEATURES, window.utils.getRandomInt(1, adData.FEATURES.length)),
         'description': '',
         'photos': []
       },
@@ -44,8 +44,8 @@ window.advert = (function () {
     var ads = [];
 
     // создаем объявления
-    for (var i = 0; i < adData.numAds; i++) {
-      ads[i] = advert.createAd(ads, i);
+    for (var i = 0; i < adData.NUM_ADS; i++) {
+      ads[i] = createAd();
     }
     return ads
   }

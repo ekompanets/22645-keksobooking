@@ -28,7 +28,7 @@ window.pin = (function () {
     });
 
     pinElement.addEventListener('keydown', function (evt) {
-      if (utils.isEnterKeyCode(evt)) {
+      if (window.utils.isEnterKeyCode(evt)) {
         setPinActive(pinElement, ad);
       }
     });

@@ -20,18 +20,18 @@ window.adData = (function () {
   var START_PIN_NUM = 0;
 
   // количество объявлений
-  var numAds = 8;
+  var NUM_ADS = 8;
   // константы для формирования объявлений
-  var minNumRooms = 1;
-  var maxNumRooms = 5;
-  var minPrice = 1000;
-  var maxPrice = 1000000;
-  var minXLocation = 300;
-  var maxXLocation = 900;
-  var minYLocation = 100;
-  var maxYLocation = 500;
-  var minNumGuests = 1;
-  var maxNumGuests = 100;
+  var MIN_NUM_ROOMS = 1;
+  var MAX_NUM_ROOMS = 5;
+  var MIN_PRICE = 1000;
+  var MAX_PRICE = 1000000;
+  var MIN_X_LOCATION = 300;
+  var MAX_X_LOCATION = 900;
+  var MIN_Y_LOCATION = 100;
+  var MAX_Y_LOCATION = 500;
+  var MIN_NUM_GUESTS = 1;
+  var MAX_NUM_GUESTS = 100;
 
   var TYPES_TRANSLATE = {
     'flat': 'Квартира',
@@ -49,18 +49,18 @@ window.adData = (function () {
     PIN_WIDTH: PIN_WIDTH,
     PIN_HEIGHT: PIN_HEIGHT,
     START_PIN_NUM: START_PIN_NUM,
-    numAds: numAds,
+    NUM_ADS: NUM_ADS,
     // константы для формирования объявлений
-    minNumRooms: minNumRooms,
-    maxNumRooms: maxNumRooms,
-    minPrice: minPrice,
-    maxPrice: maxPrice,
-    minXLocation: minXLocation,
-    maxXLocation: maxXLocation,
-    minYLocation: minYLocation,
-    maxYLocation: maxYLocation,
-    minNumGuests: minNumGuests,
-    maxNumGuests: maxNumGuests,
+    MIN_NUM_ROOMS: MIN_NUM_ROOMS,
+    MAX_NUM_ROOMS: MAX_NUM_ROOMS,
+    MIN_PRICE: MIN_PRICE,
+    MAX_PRICE: MAX_PRICE,
+    MIN_X_LOCATION: MIN_X_LOCATION,
+    MAX_X_LOCATION: MAX_X_LOCATION,
+    MIN_Y_LOCATION: MIN_Y_LOCATION,
+    MAX_Y_LOCATION: MAX_Y_LOCATION,
+    MIN_NUM_GUESTS: MIN_NUM_GUESTS,
+    MAX_NUM_GUESTS: MAX_NUM_GUESTS,
     TITLES: TITLES,
     FEATURES: FEATURES,
     LODGE_TYPES: LODGE_TYPES,

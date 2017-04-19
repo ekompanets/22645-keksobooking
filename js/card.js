@@ -44,11 +44,11 @@ window.card = (function () {
 
   // закрыть объявление
   var closeCard = function () {
-    utils.toggleClass(dialog, 'hidden', true);
-    pin.removePinActiveClass();
+    window.utils.toggleClass(dialog, 'hidden', true);
+    window.pin.removePinActiveClass();
 
     document.removeEventListener('keydown', function (evt) {
-      if (utils.isEscKeyCode(evt)) {
+      if (window.utils.isEscKeyCode(evt)) {
         closeCard();
       }
     });
@@ -56,10 +56,10 @@ window.card = (function () {
   };
   // открыть объявление
   var openCard = function () {
-    utils.toggleClass(dialog, 'hidden', false);
+    window.utils.toggleClass(dialog, 'hidden', false);
 
     document.addEventListener('keydown', function (evt) {
-      if (utils.isEscKeyCode(evt)) {
+      if (window.utils.isEscKeyCode(evt)) {
         closeCard();
       }
     });
@@ -72,7 +72,7 @@ window.card = (function () {
   });
   // закрыть объявление по Enter
   dialogClose.addEventListener('keydown', function (evt) {
-    if (utils.isEnterKeyCode(evt)) {
+    if (window.utils.isEnterKeyCode(evt)) {
       closeCard();
     }
   });
