@@ -68,5 +68,5 @@ window.adData = (function () {
     CHECKOUTS: CHECKOUTS,
     NUMBERS: NUMBERS,
     TYPES_TRANSLATE: TYPES_TRANSLATE
-  }
+  };
 })();

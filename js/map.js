@@ -4,5 +4,4 @@
 (function () {
 
   window.pin.displayPins(window.advert.createAds());
-  
 })();

@@ -59,12 +59,12 @@ window.pin = (function () {
     }
 
     pinMap.appendChild(fragment);
-  }
+  };
 
   return {
     renderPin: renderPin,
     removePinActiveClass: removePinActiveClass,
     setPinActive: setPinActive,
     displayPins:  displayPins
-  }
+  };
 })();

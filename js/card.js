@@ -37,9 +37,8 @@ window.card = (function () {
 
   // отображение объявления
   var displayCard = function (ad) {
-    var dialogBlock = document.querySelector('.dialog__panel');
-    dialog.replaceChild(renderCard(ad), dialogBlock);
-    document.querySelector('.dialog__title img').src = ad.author.avatar;
+    dialog.replaceChild(renderCard(ad), dialogPanel);
+    dialogTitleImg.src = ad.author.avatar;
   };
 
   // закрыть объявление
@@ -82,5 +81,5 @@ window.card = (function () {
     displayCard: displayCard,
     closeCard: closeCard,
     openCard: openCard
-  }
+  };
 })();

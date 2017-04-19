@@ -3,8 +3,6 @@
 
 window.advert = (function () {
 
-  
-
   var getRandomNumber = window.utils.getUniqValue(window.adData.NUMBERS);
   var getRandomTitle = window.utils.getUniqValue(window.adData.TITLES);
 
@@ -47,11 +45,11 @@ window.advert = (function () {
     for (var i = 0; i < window.adData.NUM_ADS; i++) {
       ads[i] = createAd();
     }
-    return ads
-  }
+    return ads;
+  };
 
   return {
     createAd: createAd,
     createAds: createAds
-  }
+  };
 })();

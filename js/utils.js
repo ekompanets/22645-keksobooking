@@ -44,10 +44,9 @@ window.utils = (function () {
     var arrayCopy = array.slice();
 
     return function () {
-      return arrayCopy.splice(utils.getRandomInt(0, arrayCopy.length - 1), 1);
+      return arrayCopy.splice(getRandomInt(0, arrayCopy.length - 1), 1);
     };
   };
-
 
   return {
     isEnterKeyCode: isEnterKeyCode,
@@ -57,5 +56,5 @@ window.utils = (function () {
     getRandomValueFromArray: getRandomValueFromArray,
     getRandomArrayFromArray: getRandomArrayFromArray,
     getUniqValue: getUniqValue
-  }
+  };
 })();
