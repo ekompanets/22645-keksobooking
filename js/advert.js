@@ -43,7 +43,7 @@ window.advert = (function () {
 
     // создаем объявления
     for (var i = 0; i < window.adData.NUM_ADS; i++) {
-      ads[i] = createAd();
+      ads.push(createAd());
     }
     return ads;
   };

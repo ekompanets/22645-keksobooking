@@ -3,7 +3,7 @@
 
 window.pin = (function () {
 
-  var pinMap = document.querySelector('.tokyo__pin-map');
+  var pinMap = null;
 
   // формирование пинов на карте
   var renderPin = function (ad, numAd) {
@@ -51,13 +51,13 @@ window.pin = (function () {
     window.card.displayCard(ad);
   };
 
-  var displayPins = function (ads) {
+  var drawPins = function (ads, map) {
+    pinMap = map;
     var fragment = document.createDocumentFragment();
     // формируем пины
     for (var i = 0; i < ads.length; i++) {
-      fragment.appendChild(renderPin(ads[i], i));
+      fragment.appendChild(renderPin(ads[i], i, map));
     }
-
     pinMap.appendChild(fragment);
   };
 
@@ -65,6 +65,6 @@ window.pin = (function () {
     renderPin: renderPin,
     removePinActiveClass: removePinActiveClass,
     setPinActive: setPinActive,
-    displayPins: displayPins
+    drawPins: drawPins
   };
 })();
