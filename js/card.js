@@ -5,7 +5,6 @@ window.card = (function () {
 
 
   var dialog = document.querySelector('.dialog');
-  var dialogPanel = dialog.querySelector('.dialog__panel');
   var dialogTitleImg = document.querySelector('.dialog__title img');
 
   var lodgeTemplate = document.querySelector('#lodge-template').content;
@@ -37,7 +36,7 @@ window.card = (function () {
 
   // отображение объявления
   var displayCard = function (ad) {
-    dialog.replaceChild(renderCard(ad), dialogPanel);
+    dialog.replaceChild(renderCard(ad), dialog.querySelector('.dialog__panel'));
     dialogTitleImg.src = ad.author.avatar;
   };
 
