@@ -12,9 +12,9 @@
 
   // соответствие времени
   var CHECK_MAP = [
-    {'in': 'in_12','out': 'out_12'}, 
-    {'in': 'in_13','out': 'out_13'}, 
-    {'in': 'in_14','out': 'out_14'}
+    {'in': 'in_12', 'out': 'out_12'},
+    {'in': 'in_13', 'out': 'out_13'},
+    {'in': 'in_14', 'out': 'out_14'}
   ];
   // установка выезда при изменении заезда
   checkIn.addEventListener('change', function (evt) {
