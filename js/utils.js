@@ -48,6 +48,12 @@ window.utils = (function () {
     };
   };
 
+  var getDependentValue = function (array, key1, value, key2) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i][key1] == value) return array[i][key2];
+    }
+  };
+
   return {
     isEnterKeyCode: isEnterKeyCode,
     isEscKeyCode: isEscKeyCode,
@@ -55,6 +61,7 @@ window.utils = (function () {
     getRandomInt: getRandomInt,
     getRandomValueFromArray: getRandomValueFromArray,
     getRandomArrayFromArray: getRandomArrayFromArray,
-    getUniqValue: getUniqValue
+    getUniqValue: getUniqValue,
+    getDependentValue: getDependentValue
   };
 })();
