@@ -53,7 +53,7 @@ window.utils = (function () {
     for (var i = 0; i < array.length; i++) {
       if (array[i][key1] === value) {
         result = array[i][key2];
-      } 
+      }
     }
     return result;
   };
