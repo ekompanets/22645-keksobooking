@@ -12,25 +12,24 @@
 
   // соответствие времени
   var CHECK_MAP = [
-    {'in': 'in_12','out': 'out_12'},
-    {'in': 'in_13','out': 'out_13'},
+    {'in': 'in_12','out': 'out_12'}, 
+    {'in': 'in_13','out': 'out_13'}, 
     {'in': 'in_14','out': 'out_14'}
   ];
-  
   // установка выезда при изменении заезда
   checkIn.addEventListener('change', function (evt) {
     checkOut.value = window.utils.getDependentValue(CHECK_MAP, 'in', checkIn.value, 'out');
   });
-  // установка заезда при изменении выезда 
+  // установка заезда при изменении выезда
   checkOut.addEventListener('change', function (evt) {
     checkIn.value = window.utils.getDependentValue(CHECK_MAP, 'out', checkOut.value, 'in');
   });
 
   // соответствие стоимости
   var TYPES_MAP = [
-    {'type':'flat', 'price': 5000},
-    {'type':'shack', 'price': 1000},
-    {'type':'palace', 'price': 10000}
+    {'type': 'flat', 'price': 5000},
+    {'type': 'shack', 'price': 1000},
+    {'type': 'palace', 'price': 10000}
   ];
 
   // установка цены при изменении типа жилья
@@ -54,16 +53,16 @@
 
   // соответствие количества комнат и гостей
   var GUEST_MAP = [
-    {'num':'num_1', 'guest': 'guest_0'},
-    {'num':'num_2', 'guest': 'guest_3'},
-    {'num':'num_100', 'guest': 'guest_3'}
+    {'num': 'num_1', 'guest': 'guest_0'},
+    {'num': 'num_2', 'guest': 'guest_3'},
+    {'num': 'num_100', 'guest': 'guest_3'}
   ];
 
   // установка количества гостей при изменении кол-ва комнат
   roomNumber.addEventListener('change', function (evt) {
     capacity.value = window.utils.getDependentValue(GUEST_MAP, 'num', roomNumber.value, 'guest');
   });
-  // установка кол-ва комнат при изменении количества гостей 
+  // установка кол-ва комнат при изменении количества гостей
   capacity.addEventListener('change', function (evt) {
     roomNumber.value = window.utils.getDependentValue(GUEST_MAP, 'guest', capacity.value, 'num');
   });

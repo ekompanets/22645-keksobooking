@@ -49,9 +49,13 @@ window.utils = (function () {
   };
 
   var getDependentValue = function (array, key1, value, key2) {
+    var result = null;
     for (var i = 0; i < array.length; i++) {
-      if (array[i][key1] == value) return array[i][key2];
+      if (array[i][key1] === value) {
+        result = array[i][key2];
+      } 
     }
+    return result;
   };
 
   return {
