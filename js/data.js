@@ -17,6 +17,8 @@ window.adData = (function () {
   var IMG_HEIGHT = 40;
   var PIN_WIDTH = 56;
   var PIN_HEIGHT = 75;
+  var PIN_MAIN_WIDTH = 75;
+  var PIN_MAIN_HEIGHT = 94;
   var START_PIN_NUM = 0;
 
   // количество объявлений
@@ -48,6 +50,8 @@ window.adData = (function () {
     IMG_HEIGHT: IMG_HEIGHT,
     PIN_WIDTH: PIN_WIDTH,
     PIN_HEIGHT: PIN_HEIGHT,
+    PIN_MAIN_WIDTH: PIN_MAIN_WIDTH,
+    PIN_MAIN_HEIGHT: PIN_MAIN_HEIGHT,
     START_PIN_NUM: START_PIN_NUM,
     NUM_ADS: NUM_ADS,
     // константы для формирования объявлений
