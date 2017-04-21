@@ -4,6 +4,7 @@
 (function () {
   var pinMap = document.querySelector('.tokyo__pin-map');
   // отрисовываем пины
-  window.pin.drawPins(window.advert.createAds(), pinMap);
+  var ads = window.advert.createAds();
+  window.pin.drawPins(ads, pinMap);
 
 })();
