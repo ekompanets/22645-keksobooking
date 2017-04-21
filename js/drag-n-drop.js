@@ -1,7 +1,7 @@
 // drag-n-drop.js
 'use strict';
 
-window.dragNDrop =(function () {
+window.dragNDrop = (function () {
   var setDragable = function (element, handler, callback) {
     handler.addEventListener('mousedown', function (evt) {
       evt.preventDefault();
@@ -10,15 +10,13 @@ window.dragNDrop =(function () {
         x: evt.clientX,
         y: evt.clientY
       };
-        console.log(startCoords.y + ' - ' + startCoords.x)
-
       var onMouseMove = function (moveEvt) {
         moveEvt.preventDefault();
 
         var shift = {
           x: startCoords.x - moveEvt.clientX,
           y: startCoords.y - moveEvt.clientY
-        };        
+        };
         startCoords = {
           x: moveEvt.clientX,
           y: moveEvt.clientY
@@ -32,7 +30,7 @@ window.dragNDrop =(function () {
           element.style.left = dif.dX + 'px';
         } else {
           var event = new Event('mouseup');
-        document.dispatchEvent(event);
+          document.dispatchEvent(event);
         }
       };
 
