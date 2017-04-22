@@ -1,7 +1,7 @@
 // advert.js
 'use strict';
 
-window.getAdvert = (function () {
+window.lodge = (function () {
 
   var getRandomNumber = window.utils.getUniqValue(window.adData.NUMBERS);
   var getRandomTitle = window.utils.getUniqValue(window.adData.TITLES);
