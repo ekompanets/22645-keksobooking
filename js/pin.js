@@ -48,7 +48,7 @@ window.pin = (function () {
     removePinActiveClass();
     pin.classList.add(window.adData.PIN_ACTIVE_CLASS);
     window.card.openCard();
-    window.card.displayCard(ad);
+    window.card.showCard(ad);
   };
 
   var drawPins = function (ads, map) {
