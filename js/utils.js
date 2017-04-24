@@ -48,8 +48,6 @@ window.utils = (function () {
     };
   };
 
-  
-
   return {
     isEnterKeyCode: isEnterKeyCode,
     isEscKeyCode: isEscKeyCode,

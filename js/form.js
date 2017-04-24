@@ -12,12 +12,12 @@
 
   var setSyncValue = function (input, value) {
     input.value = value;
-  }
+  };
 
   var setSyncMinValue = function (input, value) {
     input.min = value;
     input.value = value;
-  }
+  };
 
   // соответствие времени
   var CHECK_INS = ['in_12', 'in_13', 'in_14'];
