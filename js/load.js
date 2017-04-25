@@ -25,14 +25,13 @@
         case 404:
           error = 'Ничего не найдено';
           break;
-        
         default:
-          error = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText
-      };
+          error = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
+      }
 
       if (error) {
         onError(error);
-      };
+      }
     });
 
     xhr.addEventListener('error', function () {
@@ -46,5 +45,5 @@
     xhr.timeout = 10000;
     xhr.open('GET', url);
     xhr.send();
-  }
+  };
 })();
