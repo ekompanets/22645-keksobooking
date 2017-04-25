@@ -35,7 +35,7 @@ window.card = (function () {
   };
 
   // отображение объявления
-  var displayCard = function (ad) {
+  var showCard = function (ad) {
     dialog.replaceChild(renderCard(ad), dialog.querySelector('.dialog__panel'));
     dialogTitleImg.src = ad.author.avatar;
   };
@@ -77,7 +77,7 @@ window.card = (function () {
 
   return {
     renderCard: renderCard,
-    displayCard: displayCard,
+    showCard: showCard,
     closeCard: closeCard,
     openCard: openCard
   };

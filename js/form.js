@@ -10,62 +10,57 @@
   var checkIn = form.querySelector('#time');
   var checkOut = form.querySelector('#timeout');
 
+  var setSyncValue = function (input, value) {
+    input.value = value;
+  };
+
+  var setSyncMinValue = function (input, value) {
+    input.min = value;
+    input.value = value;
+  };
+
   // соответствие времени
-  var CHECK_MAP = [
-    {'in': 'in_12', 'out': 'out_12'},
-    {'in': 'in_13', 'out': 'out_13'},
-    {'in': 'in_14', 'out': 'out_14'}
-  ];
+  var CHECK_INS = ['in_12', 'in_13', 'in_14'];
+  var CHECK_OUTS = ['out_12', 'out_13', 'out_14'];
+
   // установка выезда при изменении заезда
-  checkIn.addEventListener('change', function (evt) {
-    checkOut.value = window.utils.getDependentValue(CHECK_MAP, 'in', checkIn.value, 'out');
-  });
-  // установка заезда при изменении выезда
-  checkOut.addEventListener('change', function (evt) {
-    checkIn.value = window.utils.getDependentValue(CHECK_MAP, 'out', checkOut.value, 'in');
-  });
+  window.synchronizeFields(checkIn, checkOut, CHECK_INS, CHECK_OUTS, setSyncValue);
+
+  // // установка заезда при изменении выезда
+  window.synchronizeFields(checkOut, checkIn, CHECK_OUTS, CHECK_INS, setSyncValue);
 
   // соответствие стоимости
-  var TYPES_MAP = [
-    {'type': 'flat', 'price': 5000},
-    {'type': 'shack', 'price': 1000},
-    {'type': 'palace', 'price': 10000}
-  ];
+  var FLAT_TYPES = ['flat', 'shack', 'palace'];
+  var FLAT_PRICES = [1000, 0, 10000];
 
   // установка цены при изменении типа жилья
-  accommodationType.addEventListener('change', function (evt) {
-    price.value = window.utils.getDependentValue(TYPES_MAP, 'type', accommodationType.value, 'price');
-  });
+  window.synchronizeFields(accommodationType, price, FLAT_TYPES, FLAT_PRICES, setSyncMinValue);
+
   // установка типа жилья при изменении цены
   price.addEventListener('change', function (evt) {
     var max = Number.MAX_VALUE;
     var dif = 0;
-    for (var i = 0; i < TYPES_MAP.length; i++) {
-      dif = price.value - TYPES_MAP[i]['price'];
+    for (var i = 0; i < FLAT_TYPES.length; i++) {
+      dif = price.value - FLAT_PRICES[i];
       if (dif >= 0) {
         if (dif <= max) {
           max = dif;
-          accommodationType.value = TYPES_MAP[i]['type'];
+          accommodationType.value = FLAT_TYPES[i];
         }
       }
     }
   });
 
   // соответствие количества комнат и гостей
-  var GUEST_MAP = [
-    {'num': 'num_1', 'guest': 'guest_0'},
-    {'num': 'num_2', 'guest': 'guest_3'},
-    {'num': 'num_100', 'guest': 'guest_3'}
-  ];
+  var NUM_ROOM = ['num_1', 'num_2', 'num_100'];
+  var NUM_GUEST = ['guest_0', 'guest_3', 'guest_3'];
 
   // установка количества гостей при изменении кол-ва комнат
-  roomNumber.addEventListener('change', function (evt) {
-    capacity.value = window.utils.getDependentValue(GUEST_MAP, 'num', roomNumber.value, 'guest');
-  });
+  window.synchronizeFields(roomNumber, capacity, NUM_ROOM, NUM_GUEST, setSyncValue);
+
   // установка кол-ва комнат при изменении количества гостей
-  capacity.addEventListener('change', function (evt) {
-    roomNumber.value = window.utils.getDependentValue(GUEST_MAP, 'guest', capacity.value, 'num');
-  });
+  window.synchronizeFields(capacity, roomNumber, NUM_GUEST, NUM_ROOM, setSyncValue);
+
   // валидация формы при отправке
   form.addEventListener('invalid', function (evt) {
     evt.target.classList.add('error');
