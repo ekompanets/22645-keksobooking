@@ -18,7 +18,7 @@
     pinMap.appendChild(fragment);
   }
 
-  window.load('https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/dxdfbata', onLoad);
+  window.load('https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/data', onLoad);
 
   // отрисовываем пины
   // window.pin.drawPins(window.lodge.createAds(), pinMap);
