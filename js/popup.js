@@ -11,8 +11,8 @@ window.showPopup = (function () {
 
     window.utils.toggleClass(popupElement, 'hidden', false);
 
-    setTimeout(function(){
+    setTimeout(function () {
       window.utils.toggleClass(popupElement, 'hidden', true);
     }, delay);
-  }
+  };
 })();

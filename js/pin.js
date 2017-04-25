@@ -49,8 +49,6 @@ window.pin = (function () {
     window.card.showCard(ad);
   };
 
-  
-
   return {
     renderPin: renderPin,
     removePinActiveClass: removePinActiveClass,

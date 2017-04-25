@@ -6,9 +6,8 @@
 
     var onError = function (error) {
       window.showPopup(error);
-      console.log(error);
-    }
-    var xhr = new XMLHttpRequest;
+    };
+    var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       var error;
@@ -16,24 +15,25 @@
         case 200:
           onLoad(xhr.response);
           break;
-        
-        case 400: 
+
+        case 400:
           error = 'Неверный запрос';
           break;
         case 401:
           error = 'Пользователь не авторизован';
           break;
-        case 404:  
+        case 404:
           error = 'Ничего не найдено';
           break;
         
         default:
-          error = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
+          error = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText
       };
+
       if (error) {
         onError(error);
-      }
-    })
+      };
+    });
 
     xhr.addEventListener('error', function () {
       onError('Ошибка соединения');
