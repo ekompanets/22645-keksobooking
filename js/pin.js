@@ -3,10 +3,8 @@
 
 window.pin = (function () {
 
-  var pinMap = null;
-
   // формирование пинов на карте
-  var renderPin = function (ad, numAd) {
+  var renderPin = function (ad, flagActive, callback) {
     var pinElement = document.createElement('div');
     var imgElement = document.createElement('img');
     pinElement.className = window.adData.PIN_CLASS;
@@ -19,7 +17,7 @@ window.pin = (function () {
     imgElement.src = ad.author.avatar;
     pinElement.appendChild(imgElement);
 
-    if (numAd === window.adData.START_PIN_NUM) {
+    if (flagActive) {
       setPinActive(pinElement, ad);
     }
 
@@ -38,8 +36,8 @@ window.pin = (function () {
 
   // деактивация пина
   var removePinActiveClass = function () {
-    if (pinMap.querySelector('.' + window.adData.PIN_ACTIVE_CLASS)) {
-      pinMap.querySelector('.' + window.adData.PIN_ACTIVE_CLASS).classList.remove(window.adData.PIN_ACTIVE_CLASS);
+    if (document.querySelector('.' + window.adData.PIN_ACTIVE_CLASS)) {
+      document.querySelector('.' + window.adData.PIN_ACTIVE_CLASS).classList.remove(window.adData.PIN_ACTIVE_CLASS);
     }
   };
 
@@ -51,20 +49,11 @@ window.pin = (function () {
     window.card.showCard(ad);
   };
 
-  var drawPins = function (ads, map) {
-    pinMap = map;
-    var fragment = document.createDocumentFragment();
-    // формируем пины
-    for (var i = 0; i < ads.length; i++) {
-      fragment.appendChild(renderPin(ads[i], i, map));
-    }
-    pinMap.appendChild(fragment);
-  };
+  
 
   return {
     renderPin: renderPin,
     removePinActiveClass: removePinActiveClass,
     setPinActive: setPinActive,
-    drawPins: drawPins
   };
 })();

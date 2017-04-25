@@ -4,8 +4,24 @@
 (function () {
   var pinMap = document.querySelector('.tokyo__pin-map');
 
+  var onLoad = function (ads) {
+    var fragment = document.createDocumentFragment();
+    // формируем пины
+    var START_PIN_NUM = window.utils.getRandomInt(0, ads.length)
+    for (var i = 0; i < ads.length; i++) {
+      var setActive = false;
+      (i === START_PIN_NUM) ? setActive = true : setActive = false;
+      fragment.appendChild(window.pin.renderPin(ads[i], setActive, function(advert) {
+        window.card.showCard(advert);
+      }));
+    }
+    pinMap.appendChild(fragment);
+  }
+
+  window.load('https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/dxdfbata', onLoad);
+
   // отрисовываем пины
-  window.pin.drawPins(window.lodge.createAds(), pinMap);
+  // window.pin.drawPins(window.lodge.createAds(), pinMap);
   // DRAG
   // поле "адрес" формы
   var address = document.querySelector('#address');
