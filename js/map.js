@@ -20,8 +20,6 @@
 
   window.load('https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/data', onLoad);
 
-  // отрисовываем пины
-  // window.pin.drawPins(window.lodge.createAds(), pinMap);
   // DRAG
   // поле "адрес" формы
   var address = document.querySelector('#address');

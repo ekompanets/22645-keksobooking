@@ -44,7 +44,6 @@ window.card = (function () {
   // закрыть объявление
   var closeCard = function () {
     window.utils.toggleClass(dialog, 'hidden', true);
-    // window.pin.removePinActiveClass();
 
     if (typeof callback === 'function') {
       callback();
