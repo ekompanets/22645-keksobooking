@@ -22,7 +22,7 @@ window.filter = (function () {
         return advert.offer.price < 10000;
       case 'high':
         return advert.offer.price > 50000;
-        default: 
+      default:
         return true;
     }
   };
