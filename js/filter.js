@@ -26,11 +26,11 @@ window.filter = (function () {
   };
 
   var filterRooms = function (advert) {
-    return numRooms.value === 'any' ? true : parseInt(numRooms.value) === parseInt(advert.offer.rooms);
+    return numRooms.value === 'any' ? true : (parseInt(numRooms.value) === parseInt(advert.offer.rooms));
   };
 
   var filterGuests = function (advert) {
-    return numGuests.value === 'any' ? true : parseInt(numGuests.value) === parseInt(advert.offer.guests);
+    return numGuests.value === 'any' ? true : (parseInt(numGuests.value) === parseInt(advert.offer.guests));
   };
 
   var filterFeatures = function (advert) {
@@ -38,9 +38,9 @@ window.filter = (function () {
       return it.checked;
     });
     for (var i = 0; i < checkedItems.length; i++) {
-        if (advert.offer.features.indexOf(checkedItems[i].value) === -1) {
-          return false
-        };
+      if (advert.offer.features.indexOf(checkedItems[i].value) === -1) {
+        return false;
+      }
     }
     return true;
   };
