@@ -4,7 +4,7 @@
 window.pin = (function () {
 
   // формирование пинов на карте
-  var renderPin = function (ad, flagActive, callback) {
+  var renderPin = function (ad, callback) {
     var pinElement = document.createElement('div');
     var imgElement = document.createElement('img');
     pinElement.className = window.adData.PIN_CLASS;
@@ -16,10 +16,6 @@ window.pin = (function () {
     imgElement.height = window.adData.IMG_HEIGHT;
     imgElement.src = ad.author.avatar;
     pinElement.appendChild(imgElement);
-
-    if (flagActive) {
-      setPinActive(pinElement, ad);
-    }
 
     pinElement.addEventListener('click', function (evt) {
       setPinActive(pinElement, ad);
@@ -62,11 +58,8 @@ window.pin = (function () {
   var show = function (ads, pinMap) {
     var fragment = document.createDocumentFragment();
     // формируем пины
-    var START_PIN_NUM = window.utils.getRandomInt(0, ads.length);
     for (var i = 0; i < ads.length; i++) {
-      var setActive = false;
-      setActive = (i === START_PIN_NUM) ? true : false;
-      fragment.appendChild(window.pin.renderPin(ads[i], setActive, function (advert) {
+      fragment.appendChild(window.pin.renderPin(ads[i], function (advert) {
         window.card.showCard(advert);
       }));
     }
