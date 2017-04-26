@@ -49,7 +49,7 @@ window.pin = (function () {
 
   var removeAll = function (pinMap) {
     var pin = null;
-    while (!(!(pin = pinMap.querySelector('.pin:not(.pin__main)')))) {
+    while (!(pin = pinMap.querySelector('.pin:not(.pin__main)')) === false) {
       pinMap.removeChild(pin);
       window.card.closeCard();
     }
