@@ -53,7 +53,7 @@ window.pin = (function () {
       pinMap.removeChild(pin);
       window.card.closeCard();
     }
-  }
+  };
 
   var show = function (ads, pinMap) {
     var fragment = document.createDocumentFragment();
