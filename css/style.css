@@ -672,3 +672,25 @@ select option:hover {
 .rounded {
     border-radius: 50%;
 }
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    max-width: 50%;
+    padding: 30px;
+    background: red;
+    box-shadow: 0 0 4px 1px #ff6547;
+    border-radius: 4px;
+}
+
+.popup__title {
+    padding-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.popup__text {
+    text-align: center;
+}

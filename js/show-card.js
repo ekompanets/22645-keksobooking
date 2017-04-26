@@ -8,7 +8,7 @@ window.card = (function () {
   var dialogTitleImg = document.querySelector('.dialog__title img');
 
   var lodgeTemplate = document.querySelector('#lodge-template').content;
-
+  var callback = null;
   // получение списка features в заданном формате
   var getFeature = function (item) {
     var feature = document.createElement('span');
@@ -35,15 +35,19 @@ window.card = (function () {
   };
 
   // отображение объявления
-  var showCard = function (ad) {
+  var showCard = function (ad, cb) {
     dialog.replaceChild(renderCard(ad), dialog.querySelector('.dialog__panel'));
     dialogTitleImg.src = ad.author.avatar;
+    callback = cb;
   };
 
   // закрыть объявление
   var closeCard = function () {
     window.utils.toggleClass(dialog, 'hidden', true);
-    window.pin.removePinActiveClass();
+
+    if (typeof callback === 'function') {
+      callback();
+    }
 
     document.removeEventListener('keydown', function (evt) {
       if (window.utils.isEscKeyCode(evt)) {
