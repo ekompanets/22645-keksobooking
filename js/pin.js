@@ -43,16 +43,16 @@ window.pin = (function () {
     pin.classList.add(window.adData.PIN_ACTIVE_CLASS);
     window.card.openCard();
     window.card.showCard(ad, function () {
-          window.pin.removePinActiveClass();
-        });
-  }; 
+      window.pin.removePinActiveClass();
+    });
+  };
 
   var removeAll = function (pinMap) {
     var pin = null;
     while (pin = pinMap.querySelector('.pin:not(.pin__main)')) {
-      pinMap.removeChild(pin);window.card.closeCard()
+      pinMap.removeChild(pin);
+      window.card.closeCard();
     }
-    
   }
 
   var show = function (ads, pinMap) {
@@ -64,7 +64,7 @@ window.pin = (function () {
       }));
     }
     pinMap.appendChild(fragment);
-  }
+  };
 
   return {
     show: show,

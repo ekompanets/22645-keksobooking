@@ -53,6 +53,5 @@
       canMove = true;
     }
     return canMove;
-  });  
-
+  });
 })();
