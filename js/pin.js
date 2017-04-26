@@ -46,10 +46,36 @@ window.pin = (function () {
     removePinActiveClass();
     pin.classList.add(window.adData.PIN_ACTIVE_CLASS);
     window.card.openCard();
-    window.card.showCard(ad);
-  };
+    window.card.showCard(ad, function () {
+          window.pin.removePinActiveClass();
+        });
+  }; 
+
+  var removeAll = function (pinMap) {
+    var pin = null;
+    while (pin = pinMap.querySelector('.pin:not(.pin__main)')) {
+      pinMap.removeChild(pin);window.card.closeCard()
+    }
+    
+  }
+
+  var show = function (ads, pinMap) {
+    var fragment = document.createDocumentFragment();
+    // формируем пины
+    var START_PIN_NUM = window.utils.getRandomInt(0, ads.length);
+    for (var i = 0; i < ads.length; i++) {
+      var setActive = false;
+      setActive = (i === START_PIN_NUM) ? true : false;
+      fragment.appendChild(window.pin.renderPin(ads[i], setActive, function (advert) {
+        window.card.showCard(advert);
+      }));
+    }
+    pinMap.appendChild(fragment);
+  }
 
   return {
+    show: show,
+    removeAll: removeAll,
     renderPin: renderPin,
     removePinActiveClass: removePinActiveClass,
     setPinActive: setPinActive,
