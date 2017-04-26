@@ -22,15 +22,17 @@ window.filter = (function () {
         return advert.offer.price < 10000;
       case 'high':
         return advert.offer.price > 50000;
+        default: 
+        return true;
     }
   };
 
   var filterRooms = function (advert) {
-    return numRooms.value === 'any' ? true : (parseInt(numRooms.value) === parseInt(advert.offer.rooms));
+    return numRooms.value === 'any' ? true : (parseInt(numRooms.value, 10) === parseInt(advert.offer.rooms, 10));
   };
 
   var filterGuests = function (advert) {
-    return numGuests.value === 'any' ? true : (parseInt(numGuests.value) === parseInt(advert.offer.guests));
+    return numGuests.value === 'any' ? true : (parseInt(numGuests.value, 10) === parseInt(advert.offer.guests, 10));
   };
 
   var filterFeatures = function (advert) {
