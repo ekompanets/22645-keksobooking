@@ -2,13 +2,6 @@
 'use strict';
 
 window.adData = (function () {
-  // статические массивы данных
-  var TITLES = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
-  var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-  var LODGE_TYPES = ['flat', 'house', 'bungalo'];
-  var CHECKINS = ['12:00', '13:00', '14:00'];
-  var CHECKOUTS = ['12:00', '13:00', '14:00'];
-  var NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8];
   // константы для формирования пинов
   var PIN_CLASS = 'pin';
   var PIN_ACTIVE_CLASS = 'pin--active';
@@ -65,12 +58,6 @@ window.adData = (function () {
     MAX_Y_LOCATION: MAX_Y_LOCATION,
     MIN_NUM_GUESTS: MIN_NUM_GUESTS,
     MAX_NUM_GUESTS: MAX_NUM_GUESTS,
-    TITLES: TITLES,
-    FEATURES: FEATURES,
-    LODGE_TYPES: LODGE_TYPES,
-    CHECKINS: CHECKINS,
-    CHECKOUTS: CHECKOUTS,
-    NUMBERS: NUMBERS,
     TYPES_TRANSLATE: TYPES_TRANSLATE
   };
 })();

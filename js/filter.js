@@ -9,11 +9,12 @@ window.filter = (function () {
   var numRooms = filters.querySelector('#housing_room-number');
   var numGuests = filters.querySelector('#housing_guests-number');
   var features = filters.querySelectorAll('.feature input');
-
+  // Callbacks для фильтров
+  // фильтр по типу жилья
   var filterType = function (advert) {
     return roomType.value === 'any' ? true : roomType.value === advert.offer.type;
   };
-
+  // фильтр по цене
   var filterPrice = function (advert) {
     switch (price.value) {
       case 'middle':
@@ -26,15 +27,15 @@ window.filter = (function () {
         return true;
     }
   };
-
+  // фильтр по еол-ву комнат
   var filterRooms = function (advert) {
     return numRooms.value === 'any' ? true : (parseInt(numRooms.value, 10) === parseInt(advert.offer.rooms, 10));
   };
-
+  // фильтр по кол-ву гостей
   var filterGuests = function (advert) {
     return numGuests.value === 'any' ? true : (parseInt(numGuests.value, 10) === parseInt(advert.offer.guests, 10));
   };
-
+  // фильтр по преимуществам
   var filterFeatures = function (advert) {
     var checkedItems = [].filter.call(features, function (it) {
       return it.checked;

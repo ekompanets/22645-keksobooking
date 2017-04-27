@@ -46,7 +46,7 @@ window.pin = (function () {
       window.pin.removePinActiveClass();
     });
   };
-
+  // удалить с карты все пины
   var removeAll = function (pinMap) {
     var pin = null;
     while (!(pin = pinMap.querySelector('.pin:not(.pin__main)')) === false) {
@@ -54,7 +54,7 @@ window.pin = (function () {
       window.card.closeCard();
     }
   };
-
+  //  показать пины по массиву объявлений на карте
   var show = function (ads, pinMap) {
     var fragment = document.createDocumentFragment();
     // формируем пины
