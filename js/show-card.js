@@ -12,7 +12,7 @@ window.card = (function () {
   // получение списка features в заданном формате
   var getFeature = function (item) {
     var feature = document.createElement('span');
-    feature.class = 'feature__image feature__image--' + item;
+    feature.className = 'feature__image feature__image--' + item;
     return feature;
   };
 

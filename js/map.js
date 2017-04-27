@@ -3,23 +3,31 @@
 
 (function () {
   var pinMap = document.querySelector('.tokyo__pin-map');
+  var filters = document.querySelector('.tokyo__filters');
+
+  var loadedAds = null;
+  var filteredAds = null;
 
   var onLoad = function (ads) {
-    var fragment = document.createDocumentFragment();
-    // формируем пины
-    var START_PIN_NUM = window.utils.getRandomInt(0, ads.length);
-    for (var i = 0; i < ads.length; i++) {
-      var setActive = false;
-      setActive = (i === START_PIN_NUM) ? true : false;
-      fragment.appendChild(window.pin.renderPin(ads[i], setActive, function (advert) {
-        window.card.showCard(advert);
-      }));
-    }
-    pinMap.appendChild(fragment);
+    loadedAds = ads;
+    filteredAds = window.filter(ads);
+
+    window.pin.show(filteredAds, pinMap);
   };
 
   window.load('https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/data', onLoad);
 
+  // FILTERS
+
+  var filterPins = function () {
+    filteredAds = window.filter(loadedAds);
+    window.pin.removeAll(pinMap);
+    window.pin.show(filteredAds, pinMap);
+  };
+
+  filters.addEventListener('change', function () {
+    window.debounce(filterPins);
+  });
   // DRAG
   // поле "адрес" формы
   var address = document.querySelector('#address');
@@ -49,5 +57,4 @@
     }
     return canMove;
   });
-
 })();

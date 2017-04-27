@@ -4,7 +4,7 @@
 window.pin = (function () {
 
   // формирование пинов на карте
-  var renderPin = function (ad, flagActive, callback) {
+  var renderPin = function (ad, callback) {
     var pinElement = document.createElement('div');
     var imgElement = document.createElement('img');
     pinElement.className = window.adData.PIN_CLASS;
@@ -16,10 +16,6 @@ window.pin = (function () {
     imgElement.height = window.adData.IMG_HEIGHT;
     imgElement.src = ad.author.avatar;
     pinElement.appendChild(imgElement);
-
-    if (flagActive) {
-      setPinActive(pinElement, ad);
-    }
 
     pinElement.addEventListener('click', function (evt) {
       setPinActive(pinElement, ad);
@@ -46,10 +42,33 @@ window.pin = (function () {
     removePinActiveClass();
     pin.classList.add(window.adData.PIN_ACTIVE_CLASS);
     window.card.openCard();
-    window.card.showCard(ad);
+    window.card.showCard(ad, function () {
+      window.pin.removePinActiveClass();
+    });
+  };
+
+  var removeAll = function (pinMap) {
+    var pin = null;
+    while (!(pin = pinMap.querySelector('.pin:not(.pin__main)')) === false) {
+      pinMap.removeChild(pin);
+      window.card.closeCard();
+    }
+  };
+
+  var show = function (ads, pinMap) {
+    var fragment = document.createDocumentFragment();
+    // формируем пины
+    for (var i = 0; i < ads.length; i++) {
+      fragment.appendChild(window.pin.renderPin(ads[i], function (advert) {
+        window.card.showCard(advert);
+      }));
+    }
+    pinMap.appendChild(fragment);
   };
 
   return {
+    show: show,
+    removeAll: removeAll,
     renderPin: renderPin,
     removePinActiveClass: removePinActiveClass,
     setPinActive: setPinActive,
