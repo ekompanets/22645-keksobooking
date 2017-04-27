@@ -27,31 +27,12 @@ window.filter = (function () {
     }
   };
 
-  var filterValue = function (selectField) {
-    var func = null;
-    if (selectField.value === 'any') {
-      func = function (advert) {
-        return true;
-      };
-    } else {
-      switch (String(selectField.id)) {
-        case 'housing_room-number':
-          func = function (advert) {
-            return parseInt(numRooms.value, 10) === parseInt(advert.offer.rooms, 10);
-          };
-          break;
-        case 'housing_guests-number':
-          func = function (advert) {
-            return parseInt(numGuests.value, 10) === parseInt(advert.offer.guests, 10);
-          };
-          break;
-        default:
-          func = function (advert) {
-            return true;
-          };
-      }
-    }
-    return func;
+  var filterRooms = function (advert) {
+    return numRooms.value === 'any' ? true : (parseInt(numRooms.value, 10) === parseInt(advert.offer.rooms, 10));
+  };
+
+  var filterGuests = function (advert) {
+    return numGuests.value === 'any' ? true : (parseInt(numGuests.value, 10) === parseInt(advert.offer.guests, 10));
   };
 
   var filterFeatures = function (advert) {
@@ -67,6 +48,6 @@ window.filter = (function () {
   };
 
   return function (adverts) {
-    return adverts.filter(filterType).filter(filterPrice).filter(filterValue(numRooms)).filter(filterValue(numGuests)).filter(filterFeatures);
+    return adverts.filter(filterType).filter(filterPrice).filter(filterRooms).filter(filterGuests).filter(filterFeatures);
   };
 })();
