@@ -5,7 +5,7 @@ window.dragNDrop = (function () {
   // сделать элемент перетаскиваемым
   var setDragable = function (element, handler, callback) {
     // устанавливаем начальные координаты в строку адреса
-    callback(element.offsetLeft, element.offsetTop)
+    callback(element.offsetLeft, element.offsetTop);
     handler.addEventListener('mousedown', function (evt) {
       evt.preventDefault();
 
