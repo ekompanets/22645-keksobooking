@@ -2,14 +2,14 @@
 'use strict';
 
 window.utils = (function () {
-  // проверка на нажатие ENTER
   var ENTER_KEY_CODE = 13;
   var ESC_KEY_CODE = 27;
-
+  // проверка на нажатие ENTER
   var isEnterKeyCode = function (evt) {
     return evt.keyCode === ENTER_KEY_CODE;
   };
 
+  // проверка на нажатие ESC
   var isEscKeyCode = function (evt) {
     return evt.keyCode === ESC_KEY_CODE;
   };
@@ -39,7 +39,7 @@ window.utils = (function () {
     }
     return resultArray;
   };
-
+  // получение уникального значения
   var getUniqValue = function (array) {
     var arrayCopy = array.slice();
 

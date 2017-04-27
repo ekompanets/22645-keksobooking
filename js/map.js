@@ -10,15 +10,15 @@
 
   var onLoad = function (ads) {
     loadedAds = ads;
+    // отфильтровываем значениями по умолчанию
     filteredAds = window.filter(ads);
-
+    // показываем пины на карте
     window.pin.show(filteredAds, pinMap);
   };
 
   window.load('https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/data', onLoad);
 
   // FILTERS
-
   var filterPins = function () {
     filteredAds = window.filter(loadedAds);
     window.pin.removeAll(pinMap);
@@ -50,6 +50,7 @@
     // "y": координата y метки на карте в блоке .tokyo__pin-map от 100 до 500
     // В случае, если пин вышел за пределы допустимой области,
     // callback-функция возвращает false, чтобы остановить движение пина
+    // если координаты допустимые, обновляем значения в строке адрес
     var canMove = false;
     if ((adr.x >= window.adData.MIN_X_LOCATION) && (adr.x <= window.adData.MAX_X_LOCATION) && (adr.y >= window.adData.MIN_Y_LOCATION) && (adr.y <= window.adData.MAX_Y_LOCATION)) {
       address.value = 'x: ' + adr.x + ', y: ' + adr.y;

@@ -1,6 +1,6 @@
 // modal.js
 'use strict';
-
+// показать попап с текстом
 window.showPopup = (function () {
   return function (msg) {
     var delay = 5000;
