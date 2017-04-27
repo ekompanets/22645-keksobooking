@@ -30,29 +30,29 @@ window.filter = (function () {
   var filterValue = function (selectField) {
     var func = null;
     if (selectField.value === 'any') {
-      func = function(advert) {
+      func = function (advert) {
         return true;
       };
     } else {
       switch (String(selectField.id)) {
-        case 'housing_room-number': 
-          func = function(advert) {
+        case 'housing_room-number':
+          func = function (advert) {
             return parseInt(numRooms.value, 10) === parseInt(advert.offer.rooms, 10);
           };
           break;
-        case 'housing_guests-number': 
-          func = function(advert) {
+        case 'housing_guests-number':
+          func = function (advert) {
             return parseInt(numGuests.value, 10) === parseInt(advert.offer.guests, 10);
           };
           break;
         default:
-          func = function(advert) {
-            return null;
+          func = function (advert) {
+            return true;
           };
       }
     }
     return func;
-  }
+  };
 
   var filterFeatures = function (advert) {
     var checkedItems = [].filter.call(features, function (it) {
