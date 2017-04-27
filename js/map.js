@@ -3,18 +3,21 @@
 
 (function () {
   var pinMap = document.querySelector('.tokyo__pin-map');
+  var filters = document.querySelector('.tokyo__filters');
+
   var loadedAds = null;
+  var filteredAds = null;
 
   var onLoad = function (ads) {
     loadedAds = ads;
-    window.pin.show(ads, pinMap);
+    filteredAds = window.filter(ads);
+
+    window.pin.show(filteredAds, pinMap);
   };
 
   window.load('https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/data', onLoad);
 
   // FILTERS
-  var filters = document.querySelector('.tokyo__filters');
-  var filteredAds = null;
 
   var filterPins = function () {
     filteredAds = window.filter(loadedAds);
