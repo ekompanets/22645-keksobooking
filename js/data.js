@@ -15,7 +15,7 @@ window.adData = (function () {
   var START_PIN_NUM = 0;
 
   // количество объявлений
-  var NUM_ADS = 8;
+  var NUM_ADS = 3;
   // константы для формирования объявлений
   var MIN_NUM_ROOMS = 1;
   var MAX_NUM_ROOMS = 5;

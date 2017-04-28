@@ -7,13 +7,18 @@
 
   var loadedAds = null;
   var filteredAds = null;
+  // получаем стартовый набор объявлений
+  var getStartSet = function (array, number) {
+    return array.splice(window.utils.getRandomInt(0, array.length - number), number)
+  }
 
   var onLoad = function (ads) {
     loadedAds = ads;
     // отфильтровываем значениями по умолчанию
     filteredAds = window.filter(ads);
     // показываем пины на карте
-    window.pin.show(filteredAds, pinMap);
+
+    window.pin.show(getStartSet(filteredAds, window.adData.NUM_ADS), pinMap);
   };
 
   window.load('https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/data', onLoad);
