@@ -9,15 +9,14 @@
   var filteredAds = null;
   // получаем стартовый набор объявлений
   var getStartSet = function (array, number) {
-    return array.splice(window.utils.getRandomInt(0, array.length - number), number)
-  }
+    return array.splice(window.utils.getRandomInt(0, array.length - number), number);
+  };
 
   var onLoad = function (ads) {
     loadedAds = ads;
     // отфильтровываем значениями по умолчанию
     filteredAds = window.filter(ads);
     // показываем пины на карте
-
     window.pin.show(getStartSet(filteredAds, window.adData.NUM_ADS), pinMap);
   };
 
